@@ -1,0 +1,73 @@
+spring:
+  thymeleaf:
+    cache: false
+  redis:
+    password: 123456
+    host: 192.168.221.128
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        #最大连接数，默认8
+        max-active: 1024
+        #最大连接阻塞等待时间，默认-1
+        max-wait: 10000ms
+        #最大空闲连接
+        max-idle: 200
+        #最小空闲连接
+        min-idle: 5
+  datasource:
+    url: jdbc:mysql://192.168.221.128:3308/seckill?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 号称最快的连接池
+    hikari:
+      pool-name: DateHikariCP
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      max-lifetime: 180000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  #rabbitmq配置
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 192.168.221.128
+    port: 5672
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  type-aliases-package: com.example.myseckill.pojo
+
+resilience4j.ratelimiter:
+    instances:
+      backendA:
+        limitForPeriod: 1
+        limitRefreshPeriod: 1s
+#        timeoutDuration: 10ms
+#        registerHealthIndicator: true
+#        eventConsumerBufferSize: 100
+
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1s
+#        timeoutDuration: 0
+#        registerHealthIndicator: true
+#        eventConsumerBufferSize: 100
+#      backendB:
+#        limitForPeriod: 1
+#        limitRefreshPeriod: 1000ms
+#        timeoutDuration: 3s
+
+#  private Integer limitForPeriod;
+#  private Duration limitRefreshPeriod;
+#  private Duration timeoutDuration;
+#  private Boolean subscribeForEvents;
+#  private Boolean allowHealthIndicatorToFail;
+#  private Boolean registerHealthIndicator;
+#  private Integer eventConsumerBufferSize;
+#  private Boolean writableStackTraceEnabled;
+server:
+  port: 8081
+#  private String baseConfig;
