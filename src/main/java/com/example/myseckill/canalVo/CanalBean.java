@@ -1,6 +1,8 @@
 package com.example.myseckill.canalVo;
 
 import com.example.myseckill.pojo.TGoods;
+import com.example.myseckill.pojo.TSeckillGoods;
+import com.example.myseckill.vo.GoodsVo;
 import lombok.Data;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 @Data
 public class CanalBean {
     //数据
-    private List<TGoods> data;
+    private List<TSeckillGoods> data;
     //数据库名称
     private String database;
     private long es;
